@@ -45,7 +45,7 @@ echo HELLO="\$(printf ":%s" "\${hellos[@]}")"
 SH
 
   export RBENV_VERSION=system
-  IFS=$' \t\n' run rbenv-version-origin env
+  IFS=$' \t\n' run rbenv-version-origin
   assert_success
   assert_line "HELLO=:hello:ugly:world:again"
 }
