@@ -2,6 +2,11 @@
 
 load test_helper
 
+setup() {
+  mkdir -p "$RBENV_TEST_DIR"
+  cd "$RBENV_TEST_DIR"
+}
+
 create_executable() {
   local bin
   if [[ $1 == */* ]]; then bin="$1"
@@ -57,8 +62,6 @@ create_executable() {
 }
 
 @test "doesn't include current directory in PATH search" {
-  mkdir -p "$RBENV_TEST_DIR"
-  cd "$RBENV_TEST_DIR"
   touch kill-all-humans
   chmod +x kill-all-humans
   PATH="$(path_without "kill-all-humans")" RBENV_VERSION=system run rbenv-which kill-all-humans
@@ -136,9 +139,6 @@ SH
   mkdir -p "$RBENV_ROOT"
   cat > "${RBENV_ROOT}/version" <<<"1.8"
   create_executable "1.8" "ruby"
-
-  mkdir -p "$RBENV_TEST_DIR"
-  cd "$RBENV_TEST_DIR"
 
   RBENV_VERSION='' run rbenv-which ruby
   assert_success "${RBENV_ROOT}/versions/1.8/bin/ruby"
