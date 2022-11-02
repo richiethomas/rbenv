@@ -46,11 +46,6 @@ load test_helper
   assert_output "rbenv: cannot change working directory to \`$dir'"
 }
 
-@test "adds its own libexec to PATH" {
-  run rbenv echo "PATH"
-  assert_success "${BATS_TEST_DIRNAME}/../libexec:$PATH"
-}
-
 @test "adds plugin bin dirs to PATH" {
   mkdir -p "$RBENV_ROOT"/plugins/ruby-build/bin
   mkdir -p "$RBENV_ROOT"/plugins/rbenv-each/bin
