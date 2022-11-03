@@ -44,7 +44,6 @@ OUT
 }
 
 @test "skip shell completions (fish)" {
-  root="$(cd $BATS_TEST_DIRNAME/.. && pwd)"
   run rbenv-init - fish
   assert_success
   local line="$(grep '^source' <<<"$output")"
